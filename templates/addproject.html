@@ -1,0 +1,84 @@
+{% extends 'adminbase.html' %}
+{% block content %}
+
+
+
+<style>
+    td{
+        padding:5px;
+    }
+    th{
+        padding: 10px;
+        background-color: rgb(66, 143, 117);
+        color:white;
+    }
+    
+</style>
+<div style="margin-left: 590px;">
+    <div style="width: 600px;background-color: rgb(66, 143, 117);border-radius: 30px;color: white;">
+<h3 align="center">Project Details</h3>
+<br>
+ <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %} 
+    
+					
+        <table align="center">
+        <tr><td> Title</td><td><input type="text" name="title" required class="form-control"></td></tr>
+        
+        <!-- <tr><td> Age</td><td><input type="number" name="age" required class="form-control"></td></tr> -->
+        <tr><td>Description</td><td><textarea name="description" required class="form-control"></textarea></td></tr>
+       
+        
+        <tr><td> Document</td><td><input type="file" name="doc" required class="form-control"></td></tr>
+        <tr><td>Select Manager</td>
+            <td><select name="manager" class="form-control">
+            {% for d in manager %}
+            <option value="{{d.id}}">{{d.name}}</option>
+            {% endfor %}
+            
+            
+            </select></td>
+            </tr>
+        <tr><td colspan="2" align="center"><input type="submit" name="submit" value="ADD" class="btn btn-success" align="center"></td></tr>
+        
+        </table></form>
+        </div>
+        </div>
+        <br><br><br>
+<h3  align="center">Project List</h3>
+<table  border='1' style="margin-left:390px;">
+    <tr>
+        <th>PROJECT ID</th>
+        <TH>TITLE</TH>
+        <th>DESCRIPTION</th>
+        <th>MANAGER </th>
+        <th colspan="2">DOCUMENT </th>
+        
+    </tr>
+    {% for d in name %}
+    <tr>
+        <td>{{d.id}}</td>
+        <td>{{d.title}}</td>
+        <td>{{d.desc}}</td>
+        <td>{{d.mid.name}}</td>
+       
+       
+        <td><a style="color:red;"href="/deleteproject?id={{d.id}}"><b>DELETE</b></a></td>
+        </tr>
+        
+        
+    </tr>
+    {% endfor %}
+</table>
+
+
+<script>
+
+	var msg="{{msg}}";
+	if(msg!="")
+	alert(msg)
+
+</script>
+
+
+{% endblock %}

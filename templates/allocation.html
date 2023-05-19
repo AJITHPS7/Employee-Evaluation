@@ -1,0 +1,47 @@
+
+{% extends 'managerbase.html' %}
+{% block content %}
+<style>
+    td{
+        padding:10px;
+        text-align: center;
+    }
+    th{
+        padding: 10px;
+        background-color: rgb(66, 143, 117);
+        color:white;
+        text-align: center;
+    }
+    </style>
+<h3  align="center"> Allocation</h3>
+<table  align="center"border='1' style="margin-right:430px;">
+    <tr>
+        <th>PROJECT ID</th>
+        <th>TITLE</th>
+        <th>DESCRIPTION</th>
+        <th> DOC</th>
+        <th>ACTION</th>
+        
+    </tr>
+    {% for d in data %}
+    <tr>
+        <td>{{d.id}}</td>
+        <td>{{d.title}}</td>
+        <td>{{d.desc}}</td>
+        
+        <td><a style="color:blue;" href="../static/media/{{d.doc}}" download="../static/media/{{d.doc}}"><b>View attachment</b></a></td>
+
+        <td><a style="color:red;" href="/allocatemanager?id={{d.id}}"><b>ASSIGN</b></a></td>
+        
+        
+    </tr>
+    {% endfor %}
+</table>
+
+
+<script>
+    var msg="{{msg}}";
+    if(msg!="")
+        alert(msg)
+    </script>
+    {% endblock %}

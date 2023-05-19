@@ -1,0 +1,80 @@
+{% extends 'adminbase.html' %}
+{% block content %}
+<style>
+td{
+    padding:10px;
+    text-align: center;
+}
+th{
+    padding: 10px;
+    background-color: rgb(66, 143, 117);
+    color:white;
+    text-align: center;
+}
+</style>
+<table  align="center"border='1' style="margin: 20px;">
+    <tr>
+        <th>PROJECT</th>
+        <th>DESCRIPTION</th>
+        <th>MANAGER</th>
+        <th>EMPLOYEE</th>
+        <th>STAGE</th>
+        <th>UPDATE</th>
+        <th>FEEDBACK</th>
+        <TH colspan="3">RATING</TH>
+        
+        
+    </tr>
+    {% for d in data %}
+    <tr>
+   
+        <td>{{d.updid.prid.name}}</td>
+        <td>{{d.updid.prid.desc}}</td>
+        <td>{{d.updid.prid.mid.name}}</td>
+        <td>{{d.updid.empid.name}}</td>
+        <td>{{d.updid.fstage}}</td>
+        <td>{{d.updid.exp}}</td>
+        <td>{{d.feedback}}</td>
+        <td>{% if d.points == 5 %}
+            <img src="../static/images/filledstar.png" height="20px" width="20px">
+            <img src="../static/images/filledstar.png" height="20px" width="20px">
+            <img src="../static/images/filledstar.png" height="20px" width="20px">
+            <img src="../static/images/filledstar.png" height="20px" width="20px">
+            <img src="../static/images/filledstar.png" height="20px" width="20px">
+        {% elif d.points == 4 %}
+        <img src="../static/images/filledstar.png" height="20px" width="20px">
+        <img src="../static/images/filledstar.png" height="20px" width="20px">
+        <img src="../static/images/filledstar.png" height="20px" width="20px">
+        <img src="../static/images/filledstar.png" height="20px" width="20px">
+        <img src="../static/images/unfilledstar.png" height="20px" width="20px">
+        {% elif d.points == 3 %}
+        <img src="../static/images/filledstar.png" height="20px" width="20px">
+        <img src="../static/images/filledstar.png" height="20px" width="20px">
+        <img src="../static/images/filledstar.png" height="20px" width="20px">
+        <img src="../static/images/unfilledstar.png" height="20px" width="20px">
+        <img src="../static/images/unfilledstar.png" height="20px" width="20px">
+        {% elif d.points == 2 %}
+        <img src="../static/images/filledstar.png" height="20px" width="20px">
+        <img src="../static/images/filledstar.png" height="20px" width="20px">
+        <img src="../static/images/unfilledstar.png" height="20px" width="20px">
+        <img src="../static/images/unfilledstar.png" height="20px" width="20px">
+        <img src="../static/images/unfilledstar.png" height="20px" width="20px">
+        {% elif d.points == 1 %}
+        <img src="../static/images/filledstar.png" height="20px" width="20px">
+        <img src="../static/images/unfilledstar.png" height="20px" width="20px">
+        <img src="../static/images/unfilledstar.png" height="20px" width="20px">
+        <img src="../static/images/unfilledstar.png" height="20px" width="20px">
+        <img src="../static/images/unfilledstar.png" height="20px" width="20px">
+        {% elif d.points == 0 %}
+        <img src="../static/images/unfilledstar.png" height="20px" width="20px">
+        <img src="../static/images/unfilledstar.png" height="20px" width="20px">
+        <img src="../static/images/unfilledstar.png" height="20px" width="20px">
+        <img src="../static/images/unfilledstar.png" height="20px" width="20px">
+        <img src="../static/images/unfilledstar.png" height="20px" width="20px">
+        {% endif %}</td>
+    </tr>
+       
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

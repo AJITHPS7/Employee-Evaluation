@@ -1,0 +1,66 @@
+{% extends 'managerbase.html' %}
+{% block content %}
+<style>
+    td,th{
+        padding: 10px;
+    }
+</style>
+<div style="margin-left: 590px;">
+    <div style="width: 800px;background-color: rgb(66, 143, 117);border-radius: 30px;color: white;">
+        <h2 align="center">ADD EVALUATION</h2>
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %} 
+    
+					
+        <table align="center">
+        <tr><td> Job knowledge</td>
+            <td><input type="radio" name="jk" value="Very amazing " >Exceeds standards<br>
+                <input type="radio" name="jk" value="Excellent" >Acieves marginal standards<br>
+                <input type="radio" name="jk" value="Poor" >Achieves proficient standards<br>
+                <input type="radio" name="jk" value="Very Poor" >Below standards</td></tr>
+        
+                <tr><td> Quality of work</td>
+                    <td><input type="radio" name="qual" value="Very good" >Exceeds standards<br>
+                        <input type="radio" name="qual" value="Excellent" >Acieves marginal standards<br>
+                        <input type="radio" name="qual" value="Poor" >Achieves proficient standards<br>
+                        <input type="radio" name="qual" value="Very Poor" >Below standards</td></tr>
+
+                        <tr><td> Productivity</td>
+                            <td><input type="radio" name="prod" value="very good" >Exceeds standards<br>
+                                <input type="radio" name="prod" value="Excellent" >Acieves marginal standards<br>
+                                <input type="radio" name="prod" value="Poor" >Achieves proficient standards<br>
+                                <input type="radio" name="prod" value="Very Poor" >Below standards</td></tr>
+
+                                <tr><td> Dependability</td>
+                                    <td><input type="radio" name="dep" value="very good" >Exceeds standards<br>
+                                        <input type="radio" name="dep" value="Excellent" >Acieves marginal standards<br>
+                                        <input type="radio" name="dep" value="Poor" >Achieves proficient standards<br>
+                                        <input type="radio" name="dep" value="Very Poor" >Below standards</td></tr>
+
+                                       
+
+                                                <tr><td> Supervisory ability</td>
+                                                    <td><input type="radio" name="sup" value="very good" >Exceeds standards<br>
+                                                        <input type="radio" name="sup" value="Excellent" >Acieves marginal standards<br>
+                                                        <input type="radio" name="sup" value="Poor" >Achieves proficient standards<br>
+                                                        <input type="radio" name="sup" value="Very poor" >Below standards</td></tr>
+                        
+                                                        <tr><td> Overall rating</td>
+                                                            <td><input type="radio" name="over" value="very good" >Exceeds standards<br>
+                                                                <input type="radio" name="over" value="Excellent" >Acieves marginal standards<br>
+                                                                <input type="radio" name="over" value="Poor" >Achieves proficient standards<br>
+                                                                <input type="radio" name="over" value="Very Poor" >Below standards</td></tr>
+        <tr><td colspan="2" align="center"><input type="submit" name="submit" value="SUBMIT" class="btn btn-success" align="center"></td></tr>
+        
+        </table></form>
+        </div>
+        </div>
+        <script>
+            var msg="{{msg}}";
+            if(msg!="")
+            {
+                alert(msg);
+                location.href="/managerappraisal";
+            }
+            </script>
+{% endblock %}

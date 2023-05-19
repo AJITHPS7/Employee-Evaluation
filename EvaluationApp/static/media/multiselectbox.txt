@@ -1,0 +1,116 @@
+def allocatemanager(request):
+    msg=""
+    
+    if(request.POST):
+        managerid=request.POST("mid")
+        projectid=request.GET.get("id")
+        empid=request.POST.get("empid")
+        fstage=request.POST.get("fstage")
+
+        m="select count(*) count from tbl_taskallocation where empid='"+str(empid)+"' and fstage='"+str(fstage)+"'"
+        c.execute(m)
+        msg="Already Allocated This Task"
+        i=c.fetchone()
+        if(i[0]==0):
+            m="insert into tbl_taskallocation(managerid,projectid,empid,fstage,status) values('"+str(mid)+"','"+str(projectid)+"','"+str(empid)+"','"+str(fstage)+"','Allocated')"
+            c.execute(m)
+            msg="Allocated"
+            db.commit()
+    ename=selectemployee()
+    mname=selectmanager()
+    return render(request,"allocatemanager.html",{"ename":ename,"mname":mname,"msg":msg})
+
+def selectmanager():
+    data=""
+    c.execute("select * from tbl_manager where status='1'")
+    data=c.fetchall()
+    return data
+def deletemanager(request):
+    msg=""
+    id=request.GET.get("id")
+    s="update tbl_manager set status='0' where id='"+str(id)+"'"
+    c.execute(s)
+    msg="Deleted......."
+    db.commit()
+    return render(request,"managerregistration.html",{"msg":msg})
+
+
+def selectemployee():
+    data=""
+    c.execute("select * from tbl_employee where status='1'")
+    data=c.fetchall()
+    return data
+def deletemp(request):
+    msg=""
+    id=request.GET.get("id")
+    s="update tbl_employee set status='0' where id='"+str(id)+"'"
+    c.execute(s)
+    msg="Deleted......."
+    db.commit()
+    return render(request,"empreg.html",{"msg":msg})
+
+
+{% extends 'adminbase.html' %}
+{% block content %}
+            
+
+
+            
+<style>
+    td{
+        padding:5px;
+    }
+    
+    
+</style>
+<h3 align="center">Allocation</h3>
+<br>
+ <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %} 
+    
+					
+        <table align="center">
+
+
+
+            <tr><td>Select Employee</td>
+                <td><select name="empid" class="form-control">
+                {% for d in ename %}
+                <option value="{{d.0}}">{{d.1}}</option>
+                {% endfor %}
+                
+                
+                </select></td>
+                </tr>
+                
+            <tr><td>Select Manager</td>
+                <td><select name="mid" class="form-control">
+                {% for d in mname %}
+                <option value="{{d.0}}">{{d.1}}</option>
+                {% endfor %}
+                
+                
+                </select></td>
+                </tr>
+                <tr><td>Select Stage</td>
+                    <td><select name="fstage" class="form-control">
+                   
+                    <option value="1">!st Stage</option>
+                    <option value="2">2nd Stage</option>
+                    <option value="3">3rd Stage</option>
+                    </select></td></tr>
+
+
+<tr><td><input type="submit" name="submit" value="ALLOCATE" class="btn btn-success" align="center"></td></tr>
+
+</table></form>
+
+<br><br><br>
+
+<script>
+    var msg="{{msg}}";
+    if(msg!="")
+        alert(msg)
+
+    </script>
+{% endblock %}

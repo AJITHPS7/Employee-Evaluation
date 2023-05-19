@@ -1,0 +1,57 @@
+{% extends 'managerbase.html' %}
+{% block content %}
+            
+
+
+            
+<style>
+    td{
+        padding:5px;
+    }
+    
+    
+</style>
+<br><br><br>
+<div style="margin-left: 590px;">
+    <div style="width: 600px;background-color: rgb(66, 143, 117);border-radius: 30px;color: white;">
+        <h3 align="center">Allocation</h3>
+<br>
+ <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %} 
+    
+					
+        <table align="center">
+
+
+
+            <tr><td>Select Employee</td>
+                <td><select name="empid" class="form-control">
+                {% for d in ename %}
+                <option value="{{d.id}}">{{d.name}}</option>
+                {% endfor %}
+                
+                
+                </select></td>
+                </tr>
+                <tr><td>Select Stage</td>
+                    <td><select name="fstage" class="form-control">
+                   
+                    <option value="1">1st Stage</option>
+                    <option value="2">2nd Stage</option>
+                    <option value="3">3rd Stage</option>
+                    </select></td></tr>
+
+
+<tr><td colspan="2" align="center"><input type="submit" name="submit" value="ALLOCATE" class="btn btn-success" align="center"></td></tr>
+
+</table></form>
+</div></div>
+<br><br><br>
+
+<script>
+    var msg="{{msg}}";
+    if(msg!="")
+        alert(msg)
+
+    </script>
+{% endblock %}

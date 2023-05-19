@@ -1,0 +1,54 @@
+{% extends 'managerbase.html' %}
+{% block content %}
+<h1 align="center" style="margin: 10px;">Profile</h1>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <table align="center">
+                {% if d %}
+                <tr>
+                    <td>Name</td>
+                    <td><input type="text" class="form-control" value="{{d.name}}" name="name" required pattern="[a-zA-Z ]+"></td>
+                </tr>
+                <tr>
+                    <td>Age</td>
+                    <td><input type="text" class="form-control" value="{{d.age}}" name="age"></td>
+                </tr>
+                <tr>
+                    <td>Address</td>
+                    <td><textarea name="address" class="form-control" required>{{d.address}}</textarea></td>
+                </tr>
+                <tr>
+                    <td>Place</td>
+                    <td><input type="text" class="form-control" value="{{d.place}}" name="place" required pattern="[a-zA-Z ]+"></td>
+                </tr>
+                <!-- <tr>
+                    <td>DEsignation</td>
+                    <td><input type="text" class="form-control" value="{{d.des}}" name="desig" required pattern="[a-zA-Z ]+"></td>
+                </tr> -->
+                <tr>
+                    <td>Contact</td>
+                    <td><input type="text" class="form-control" name="contact" value="{{d.contact}}" required pattern="[6789][0-9]{9}" maxlength="10"></td>
+                </tr>
+                
+                <tr>
+                    <td>Email</td>
+                    <td><input type="email" class="form-control" name="email" value="{{d.email}}" readonly required></td>
+                </tr>
+               
+                {% endif %}
+                <tr>
+                    <td></td>
+                    <td><input type="submit" class="btn btn-primary" style="color: white;" value="Update"></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    <script>
+        var msg="{{msg}}";
+        if(msg!="")
+            alert(msg)
+        </script>
+            
+
+
+            {% endblock %}

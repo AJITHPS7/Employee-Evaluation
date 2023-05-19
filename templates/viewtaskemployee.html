@@ -1,0 +1,49 @@
+
+{% extends 'employeebase.html' %}
+{% block content %}
+
+<style>
+    td{
+        padding:10px;
+        text-align: center;
+    }
+    th{
+        padding: 10px;
+        background-color: rgb(66, 143, 117);
+        color:white;
+        text-align: center;
+    }
+    </style>
+<table  align="center"border='1' style="margin-right:360px;">
+    <tr>
+        <th>PROJECT</th>
+        <th>DESCRIPTION</th>
+        <th>MANAGER</th>
+        <TH colspan="3">STAGE</TH>
+        
+        
+    </tr>
+    {% for d in data %}
+    <tr>
+   
+        <td>{{d.prid.title}}</td>
+        <td>{{d.prid.desc}}</td>
+        <td>{{d.prid.mid.name}}</td>
+        <td>{{d.fstage}}</td>
+        <td><a style="color:blue;" download="../static/media/{{d.prid.doc}}" href="../static/media/{{d.prid.doc}}">View document</a></td>
+         
+        <td><a style="color:red;" href="/taskupdation?id={{d.prid.id}}&mid={{d.prid.mid.id}}&taskid={{d.id}}"><b>ADD UPDATION</b></a></td>
+        
+        
+        
+    </tr>
+    {% endfor %}
+</table>
+
+
+<script>
+    var msg="{{msg}}";
+    if(msg!="")
+        alert(msg)
+    </script>
+    {% endblock %}

@@ -1,0 +1,43 @@
+
+{% extends 'adminbase.html' %}
+{% block content %}
+
+
+<table  align="center"border='1' style="margin:50px;">
+    <tr>
+        <th>MANAGER</th>
+        <th>DATE</th>
+        <th>JOB KNOWLEDGE</th>
+        <th>QUALITY OF WORK</th>
+        <th>PRODUCTIVITY</th>
+        <th>DEPENDABILITY</th>
+        <th>SUPERVISORY ABILITY</th>
+        <th>OVERALL RATING</th>
+    </tr>
+    {% for d in data %}
+    <tr>
+   
+        <td>{{d.mid.name}}</td>
+        <td>{{d.edate}}</td>
+        <td>{{d.jobknowledge}}</td>
+        <td>{{d.qualityofwork}} </td>
+        <td>{{d.productivity}}</td>
+        <td>{{d.dependability}}</td>
+        <td>{{d.supervisorability}}</td>
+        <td>{{d.overallrating}}</td>
+        
+       
+    </tr>
+    {% endfor %}
+</table>
+<!-- <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %} 
+    <input type="submit" name="submit" value="ANALYSE FEEDBACKS" style="margin:0px 100px;" class="btn btn-success" align="center">
+</form> -->
+
+<script>
+    var msg="{{msg}}";
+    if(msg!="")
+        alert(msg)
+    </script>
+    {% endblock %}

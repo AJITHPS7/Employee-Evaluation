@@ -1,0 +1,50 @@
+
+{% extends 'managerbase.html' %}
+{% block content %}
+<style>
+    td{
+        padding:10px;
+        text-align: center;
+    }
+    th{
+        padding: 10px;
+        background-color: rgb(66, 143, 117);
+        color:white;
+        text-align: center;
+    }
+    </style>
+<h2 style="text-align: center;">REVIEWS</h2>
+<table  align="center"border='1' style="margin-right:340px;">
+    <tr>
+        <th>PROJECT</th>
+        <th>DESCRIPTION</th>
+        <th>EMPLOYEE</th>
+        <th>STAGE</th>
+        <TH colspan="3">UPDATE</TH>
+        
+    </tr>
+    {% for d in data %}
+    <tr>
+   
+        <td>{{d.prid.title}}</td>
+        <td>{{d.prid.desc}}</td>
+        <td>{{d.empid.name}}</td>
+        <td>{{d.taskid.fstage}}</td>
+        <td>{{d.exp}}</td>
+     
+        
+        <td><a style="color:red;" href="/manageraddevaluation?id={{d.id}}"><b>ADD EVALUATION</b></a></td>
+        
+        
+        
+    </tr>
+    {% endfor %}
+</table>
+
+
+<script>
+    var msg="{{msg}}";
+    if(msg!="")
+        alert(msg)
+    </script>
+    {% endblock %}

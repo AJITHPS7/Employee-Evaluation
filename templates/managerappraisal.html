@@ -1,0 +1,49 @@
+
+{% extends 'managerbase.html' %}
+{% block content %}
+<style>
+    td{
+        padding:10px;
+        text-align: center;
+    }
+    th{
+        padding: 10px;
+        background-color: rgb(66, 143, 117);
+        color:white;
+        text-align: center;
+    }
+    </style>
+<h1 style="text-align: center;">APPRAISAL</h1>
+<table  align="center"border='1' style="margin-right:390px;">
+    <tr>
+        <th>EMPLOYEE ID</th>
+        <th>NAME</th>
+        <th>APPLIED DATE</th>
+        <th>PERIOD OF REQUEST</th>
+        <TH colspan="3">APPRAISAL TYPE</TH> 
+    </tr>
+    {% for d in data %}
+    <tr>
+   
+        <td>{{d.empid.id}}</td>
+        <td>{{d.empid.name}}</td>
+        <td>{{d.adate}}</td>
+        <td>{{d.dfrom}} to {{d.dto}}</td>
+        <td>{{d.atype}}</td>
+     
+        
+        <td><a style="color:red;" href="/manageraddevaluation?id={{d.id}}"><b>EVALUATE EMPLOYEE</b></a></td>
+        
+        
+        
+    </tr>
+    {% endfor %}
+</table>
+
+
+<script>
+    var msg="{{msg}}";
+    if(msg!="")
+        alert(msg)
+    </script>
+    {% endblock %}

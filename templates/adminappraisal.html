@@ -1,0 +1,60 @@
+
+{% extends 'adminbase.html' %}
+{% block content %}
+
+<style>
+    td{
+        padding:10px;
+        text-align: center;
+    }
+    th{
+        padding: 10px;
+        background-color: rgb(66, 143, 117);
+        color:white;
+        text-align: center;
+    }
+    </style>
+    <br>
+    <br>
+<table  border='1' >
+    <tr>
+        <th>EMPLOYEE ID</th>
+        <th>NAME</th>
+        <th>DESIGNATION</th>
+        <th>JOB KNOWLEDGE</th>
+        <th>QUALITY OF WORK</th>
+        <TH>PRODUCTIVITY</TH> 
+        <TH>DEPENDEBILITY</TH> 
+        <TH>SUPERVISOR ABILITY</TH> 
+        <TH>OVERALL RATING</TH> 
+        <TH>COWORKER RATING</TH> 
+    </tr>
+    {% for d in data %}
+    <tr>
+   
+        <td>{{d.id}}</td>
+        <td>{{d.name}}</td>
+        <td>{{d.desig}}</td>
+        <td>{{d.rat1}}/5</td>
+        <td>{{d.rat2}}/5</td>
+        <td>{{d.rat3}}/5</td>
+        <td>{{d.rat4}}/5</td>
+        <td>{{d.rat5}}/5</td>
+        <td>{{d.rat6}}/5</td>
+        <td>{{d.coRat}}/5</td>
+     
+      
+        
+        
+        
+    </tr>
+    {% endfor %}
+</table>
+
+
+<script>
+    var msg="{{msg}}";
+    if(msg!="")
+        alert(msg)
+    </script>
+    {% endblock %}

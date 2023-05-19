@@ -1,0 +1,57 @@
+{% extends 'employeebase.html' %}
+{% block content %}
+
+
+
+<style>
+    td{
+        padding:5px;
+    }
+    th{
+        padding: 10px;
+        background-color: rgb(66, 143, 117);
+        color:white;
+    }
+    
+</style>
+<div style="margin-left: 590px;">
+    <div style="width: 600px;background-color: rgb(66, 143, 117);border-radius: 30px;color: white;">
+<h3 align="center">Coworker Review</h3>
+<br>
+ <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %} 
+    
+					
+        <table align="center">
+         
+        <tr>
+            <td> Name</td>
+                <td>
+                    <select name="emp" style="border-radius: 1em;height: 50px;width: 100px;" id="id">
+                        {% for e in employee %}
+                        <option value="{{e.id}}">{{e.name}}</option>
+                         {% endfor %}
+                    </select>
+                </td>
+            </tr>
+      
+        <tr><td> Review </td><td><textarea name="rev" id="rev" style="border-radius: 1em;" cols="30" rows="6"></textarea></td></tr>
+      
+        <tr><td colspan="2" align="center"><input type="submit" name="submit" value="APPLY" class="btn btn-success" align="center"></td></tr>
+        
+        </table></form>
+        </div>
+        </div>
+        <br><br><br>
+        
+
+<script>
+
+	var msg="{{msg}}";
+	if(msg!="")
+	alert(msg)
+
+</script>
+
+
+{% endblock %}

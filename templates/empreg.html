@@ -1,0 +1,93 @@
+{% extends 'managerbase.html' %}
+{% block content %}
+
+
+
+<style>
+    td{
+        padding:5px;
+    }
+    th{
+        padding: 10px;
+        background-color: rgb(66, 143, 117);
+        color:white;
+    }
+    
+    
+</style>
+{% for m in messages %}
+<script>
+alert('{{m}}')
+</script>
+{% endfor %}
+
+<div style="margin-left: 590px;">
+    <div style="width: 600px;background-color: rgb(66, 143, 117);border-radius: 30px;color: white;">
+<h3 align="center">Employee Registration</h3>
+<br>
+ <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %} 
+    
+					
+        <table align="center">
+        <tr><td> Name</td><td><input type="text" name="name" required class="form-control"></td></tr>
+        
+        <tr><td>Address</td><td><textarea name="address" required class="form-control"></textarea></td></tr>
+        <tr><td> Place</td><td><input type="text" name="place" required class="form-control"></td></tr>
+        <tr><td> Designation</td><td><input type="text" name="desig" required class="form-control"></td></tr>
+        <tr><td>Contact</td><td><input type="text" name="contact" maxlength="10" pattern="[789][0-9]{9}" required class="form-control"></td></tr>
+        
+        <tr><td> Image</td><td><input type="file" name="pic" required class="form-control"></td></tr>
+        <tr><td> Email</td><td><input type="email" name="email" required class="form-control"></td></tr>
+        <tr><td>Password</td><td><input type="password" name="password" pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$" required class="form-control"></td></tr>
+        
+        <tr><td colspan="2" align="center"><input type="submit" name="submit" value="REGISTER" class="btn btn-success" align="center"></td></tr>
+        
+        </table></form>
+        </div>
+        </div>
+        <br><br><br>
+        <h3  align="center">Employee List</h3>
+        <div style="margin-left: 370px;">
+
+<table  align="center"border='1' style="margin:50px;">
+    <tr>
+        <th>EMPLOYEE ID</th>
+        <th>Name</th>
+        <th>AGE</th>
+        <th>ADDRESS</th>
+        <th>PLACE </th>
+      
+        <th>CONTACT</th>
+        <th> EMAIL</th>
+        <th> IMAGE</th>
+        <th>Action</th>
+    </tr>
+    {% for d in data %}
+    <tr>
+        <td>{{d.id}}</td>
+        <td>{{d.name}}</td>
+        <td>{{d.age}}</td>
+        <td>{{d.address}}</td>
+        <td>{{d.place}}</td>
+        <td>{{d.contact}}</td>
+        <td>{{d.email}}</td>
+        <td><img height="200px" width="200px" src="../static/media/{{d.pic}}"></td>
+        <td><a href="/deletemp?id={{d.id}}" style="color: red;"><b>DELETE</b></a></td>
+        </tr>
+        
+    </tr>
+    {% endfor %}
+</table>
+</div>
+
+<script>
+
+	var msg="{{msg}}";
+	if(msg!="")
+	alert(msg)
+
+</script>
+
+
+{% endblock %}
